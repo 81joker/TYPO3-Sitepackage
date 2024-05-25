@@ -1,0 +1,61 @@
+<!-- Start This is Nav -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">Navbar</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <f:for each="{mainnavigation}" as="mainnavigationItem">
+          <li
+            class="nav-item {f:if(condition: mainnavigationItem.children, then:'dropdow')}"
+          >
+            <a
+              class="nav-link {f:if(condition: mainnavigationItem.children, then:'dropdown-toggle')} {f:if(condition: mainnavigationItem.children, then:'active')}"
+              aria-current="page"
+              href="{mainnavigationItem.link}"
+              target="{mainnavigationItem.target}"
+              title="{mainnavigationItem.title}"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="{f:if(condition: mainnavigationItem.children, then:'dropdown')}"
+              aria-expanded="false"
+            >
+              {mainnavigationItem.title}
+            </a>
+            <f:if condition="{mainnavigationItem.children}">
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <f:for each="{mainnavigationItem.children}" as="child">
+                  <li class="{f:if(condition: child.active, then:'active')}">
+                    <a
+                      class="dropdown-item"
+                      href="{child.link}"
+                      target="{child.target}"
+                      title="{child.title}"
+                    >
+                      {child.title}
+                    </a>
+                  </li>
+                </f:for>
+              </ul>
+            </f:if>
+          </li>
+        </f:for>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- End This is Nav -->
+<f:comment>
+<f:debug>{_all}</f:debug>
+</f:comment>
+<f:render section="Main" />
